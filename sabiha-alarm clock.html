@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Alarm Clock</title>
+	<style type="text/css">
+		#clock{
+			width: 1000px;
+			height: 200px;
+			font-size: 150px;
+			text-align: center;
+			border: 2px solid black;
+			margin: 200px;
+      margin-top: 300px;
+			border-radius: 1%;
+			color: red;
+			background-color: rgba(0, 0, 0, .9);
+			box-shadow: 10px 10px 10px #F01;
+
+		}
+    #img{
+      width: 100px; height: 100px;
+      margin-right: 300px;
+      
+
+    }
+    img{
+      width: 350px; height: 350px;
+      position: relative;
+    }
+    
+	</style>
+</head>
+<body>
+    <center><div id="img">
+      <a href="http://images.clipartpanda.com/alarm-clock-png-classic-alarm-clock.png"><img src="http://images.clipartpanda.com/alarm-clock-png-classic-alarm-clock.png"></a>
+      <audio id= "audio" controls src="Old-alarm-clock-ringing.mp3" type="audio/mpeg" preload="auto">
+      </audio> <!---adds the alarm music/ controls feature gives control of volume,pause etc-->
+    </div></center>
+    <div id="clock">10:10:01</div>
+
+       <script type="text/javascript">
+          setInterval(displayclock, 500); //the repeatation time//
+    	  function displayclock(){
+               var time= new Date(); //built-in function for time//
+               var hrs=time.getHours();
+               var min=time.getMinutes();
+               var sec=time.getSeconds();
+               var day= 'AM';
+
+               if (hrs>12){ 
+               	hrs= 'PM'
+               }
+               if (hrs>12){ //it is a 12 hours clock so when it goes past 12, the clock shows 1 AM/PM//
+               	hrs= hrs-12
+               }
+               if (hrs == 0){ //when 'hours' is equal to 12, insetead of showing 0 (as conditioned previously), it shows 12//
+               	hrs = 12;
+               }
+               if (hrs<10){
+               	hrs='0' + hrs;
+               }
+               if (min<10){
+               	min= '0' + min;
+               }
+               if (sec<10){
+               	sec= '0' + sec;
+               }
+               if (hrs == 4, min ==40, sec ==59){
+                document.getElementById('audio').play(); //every 1 minute the alarm goes off and by getting the audio by id and alerts wakeup// 
+                alert("Wake up!");
+               }
+               document.getElementById('clock').innerHTML= hrs + ':' + min + ':' + sec + ' ' + day;
+
+
+    	       }
+
+    </script>
+</body>
+</html>
